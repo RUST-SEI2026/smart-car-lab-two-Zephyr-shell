@@ -23,12 +23,12 @@ impl Default for Pose {
 
 
 impl Pose{
-    pub(crate) fn forward(&mut self){
+    pub(crate) fn forward(&mut self,offset:i32){
         match self.heading{
-            'E' => self.x += 1,
-            'S' => self.y -= 1,
-            'W' => self.x -= 1,
-            'N' => self.y += 1,
+            'E' => self.x += offset,
+            'S' => self.y -= offset,
+            'W' => self.x -= offset,
+            'N' => self.y += offset,
             _ => (),
         }
     }
