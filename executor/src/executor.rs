@@ -33,13 +33,7 @@ impl Executor {
     pub fn execute(&mut self, cmds: &str) {
         for cmd in cmds.chars() {
             match cmd {
-                'M' => match self.pose.heading {
-                    'E' => self.pose.x += 1,
-                    'S' => self.pose.y -= 1,
-                    'W' => self.pose.x -= 1,
-                    'N' => self.pose.y += 1,
-                    _ => (),
-                },
+                'M' => self.forward(),
                 'L' => match self.pose.heading {
                     'E' => self.pose.heading = 'N',
                     'S' => self.pose.heading = 'E',
@@ -61,5 +55,15 @@ impl Executor {
 
     pub fn query(&self) -> Pose {
         self.pose
+    }
+
+    fn forward(&mut self){
+        match self.pose.heading{
+            'E' => self.pose.x += 1,
+            'S' => self.pose.y -= 1,
+            'W' => self.pose.x -= 1,
+            'N' => self.pose.y += 1,
+            _ => (),
+        }
     }
 }
