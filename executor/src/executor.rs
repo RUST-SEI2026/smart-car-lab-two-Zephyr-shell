@@ -34,20 +34,8 @@ impl Executor {
         for cmd in cmds.chars() {
             match cmd {
                 'M' => self.forward(),
-                'L' => match self.pose.heading {
-                    'E' => self.pose.heading = 'N',
-                    'S' => self.pose.heading = 'E',
-                    'W' => self.pose.heading = 'S',
-                    'N' => self.pose.heading = 'W',
-                    _ => (),
-                },
-                'R' => match self.pose.heading {
-                    'E' => self.pose.heading = 'S',
-                    'S' => self.pose.heading = 'W',
-                    'W' => self.pose.heading = 'N',
-                    'N' => self.pose.heading = 'E',
-                    _ => (),
-                },
+                'L' => self.turn_left(),
+                'R' => self.turn_right(),
                 _ => (),
             }
         }
@@ -73,6 +61,15 @@ impl Executor {
             'S' => self.pose.heading = 'E',
             'W' => self.pose.heading = 'S',
             'N' => self.pose.heading = 'W',
+            _ => (),
+        }
+    }
+    fn turn_right(&mut self){
+        match self.pose.heading{
+            'E' => self.pose.heading = 'S',
+            'S' => self.pose.heading = 'W',
+            'W' => self.pose.heading = 'N',
+            'N' => self.pose.heading = 'E',
             _ => (),
         }
     }
