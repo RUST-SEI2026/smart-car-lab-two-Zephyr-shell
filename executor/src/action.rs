@@ -12,7 +12,6 @@ impl Action{
             Action::Forward(offset) => pose.forward(*offset),
             Action::TurnLeft => pose.turn_left(),
             Action::TurnRight => pose.turn_right(),
-            _ => (),
         }
     }
 }
